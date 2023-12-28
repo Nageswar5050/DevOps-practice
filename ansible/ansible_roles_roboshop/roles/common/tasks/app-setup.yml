@@ -1,0 +1,15 @@
+- name: creating user
+  user:
+    name: roboshop
+    state: present
+
+- name: creating /app direcrory
+  file:
+    path: /app
+    state: directory
+
+- name: downloading and unzipping app data
+  unarchive:
+    src: https://roboshop-builds.s3.amazonaws.com/"{{component}}.zip
+    dest: /app
+    remote_src: yes

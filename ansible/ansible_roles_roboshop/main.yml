@@ -1,6 +1,5 @@
 - name: ROBOSHOP PLAYBOOK
-  hosts: ("mongo" "catalogue")
+  hosts: "{{component}}"
   become: true
   roles:
-    - mongo
-    - catalogue
+   - "{{component}}"
