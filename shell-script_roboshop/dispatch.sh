@@ -31,7 +31,7 @@ fi
 
 timedatectl set-timezone Asia/Kolkata
 
-dnf install golang -y $LOGFILE
+dnf install golang -y &>>$LOGFILE
 
 VALIDATE "Installing golang"
 

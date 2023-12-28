@@ -29,11 +29,11 @@ else
     echo -e "$Y You are root user$NC"
 fi
 
-dnf install maven -y
+dnf install maven -y &>>$LOGFILE
 
 VALIDATE "Installing Maven"
 
-id roboshop
+id roboshop &>> $LOGFILE
 
 if [ $? -ne 0 ]
 then
@@ -63,6 +63,8 @@ mvn clean package &>> $LOGFILE
 VALIDATE "Installing application"
 
 mv target/shipping-1.0.jar shipping.jar &>> $LOGFILE
+
+cp -u /home/centos/shell-script/shipping.service /etc/systemd/system/shipping.service
 
 sed -i 's/<CART-SERVER-IPADDRESS>/cart.challa.cloud/' /etc/systemd/system/shipping.service &>> $LOGFILE
 sed -i 's/<MYSQL-SERVER-IPADDRESS>/mysql.challa.cloud/' /etc/systemd/system/shipping.service &>> $LOGFILE

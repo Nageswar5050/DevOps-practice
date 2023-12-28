@@ -29,11 +29,11 @@ else
     echo -e "$Y You are root user$NC"
 fi
 
-timedatectl set-timezone Asia/Kolkata
+timedatectl set-timezone Asia/Kolkata  &>> $LOGFILE
 
-dnf install python36 gcc python3-devel -y
+dnf install python36 gcc python3-devel -y  &>> $LOGFILE
 
-VALIDATE "Installing Python"
+VALIDATE "Installing Python" 
 
 id roboshop
 

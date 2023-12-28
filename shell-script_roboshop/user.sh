@@ -74,7 +74,7 @@ cp /home/centos/shell-script/user.service /etc/systemd/system/  &>> $LOGFILE
 
 VALIDATE "copying user.service file"
 
-sed -i 's/<MONGODB-SERVER-IPADDRESS>/mongo.challa.cloud/' /etc/systemd/system/user.service &>> $LOGFILE
+sed -i 's/<MONGODB-SERVER-IP-ADDRESS>/mongo.challa.cloud/' /etc/systemd/system/user.service &>> $LOGFILE
 sed -i 's/<REDIS-SERVER-IP>/redis.challa.cloud/' /etc/systemd/system/user.service &>> $LOGFILE
 
 VALIDATE "adding mongodb and redis ip in service"
@@ -91,7 +91,7 @@ systemctl start user &>> $LOGFILE
 
 VALIDATE "starting user"
 
-cp /home/centos/shell-script/user.repo /etc/yum.repos.d/user.repo &>> $LOGFILE
+cp /home/centos/shell-script/mongo.repo /etc/yum.repos.d/mongo  .repo &>> $LOGFILE
 
 VALIDATE "copying user data"
 

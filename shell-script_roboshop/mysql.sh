@@ -35,6 +35,10 @@ dnf module disable mysql -y &>> $LOGFILE
 
 VALIDATE "Disabling MySQL"
 
+cp -u /home/centos/shell-script/mysql.repo /etc/yum.repos.d/mysql.repo &>> $LOGFILE
+
+VALIDATE "Copied Mysql repo"
+
 dnf install mysql-community-server -y &>> $LOGFILE
 
 VALIDATE "Installing MySQL 5.7"

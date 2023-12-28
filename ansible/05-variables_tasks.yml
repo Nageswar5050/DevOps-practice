@@ -1,0 +1,12 @@
+- name: Variables from task
+  hosts: localhost
+  vars:
+     PERSON: "Nagesh"
+     AGE: "26"
+  tasks:
+    - name: task
+      vars:
+        PERSON: "Nagesh from task"
+        AGE: "26 from task"
+      ansible.builtin.debug:
+       msg: "Hello my name is {{PERSON}}, my age is {{AGE}}"

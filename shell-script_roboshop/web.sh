@@ -51,6 +51,8 @@ curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGFI
 
 VALIDATE "Downloading new http content"
 
+cd /usr/share/nginx/html/
+
 unzip -o /tmp/web.zip &>> $LOGFILE
 
 VALIDATE "Unzipping html content"
