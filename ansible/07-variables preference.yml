@@ -1,0 +1,21 @@
+- name: Variables precedence
+  hosts: localhost
+  vars:
+    name: "Nageswar_from play variables"
+    age: "26_from play variables"
+  vars_files:
+    variables.txt
+  vars_prompt:
+    - name: name
+      prompt: What is your name?
+    - name: age
+      prompt: What is your age?
+  tasks:
+    - name: checking tasks
+      vars:
+        name: "Nageswar_from tasks"
+        age: "26_from tasks"
+      debug:
+        msg: "I am {{name}}, and my age is {{age}}"
+
+  

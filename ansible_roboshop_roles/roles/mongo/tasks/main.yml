@@ -1,0 +1,16 @@
+- name: copying mongo repo
+  role:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install MongoDB
+  package:
+    name: mongod
+    state: present
+    update_cache: true
+
+- name: allowing all in mongo.conf
+  replace:
+    path: /etc/mongo.repo
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
