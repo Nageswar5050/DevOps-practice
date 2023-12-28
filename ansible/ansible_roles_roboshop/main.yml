@@ -1,5 +1,6 @@
 - name: ROBOSHOP PLAYBOOK
-  hosts: mongo
+  hosts: all
   become: true
   roles:
     - mongo
+    - cart
