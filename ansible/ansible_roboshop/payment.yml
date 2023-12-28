@@ -1,0 +1,53 @@
+- name: roboshop payment
+  hosts: payment
+  become: true
+  tasks:
+    - name: installing python
+      package:
+        name: "{{item}}"
+        state: present
+      loop:
+       - python36 
+       - gcc
+       - python3-devel
+
+    - name: adding user
+      user:
+        name: roboshop
+        state: present
+
+    - name: creating directory
+      file:
+       name: /app
+       state: directory
+
+    - name: downloading and unzipping payment data
+      unarchive:
+        src: https://roboshop-builds.s3.amazonaws.com/payment.zip
+        dest: /app
+        remote_src: true
+
+    - name: running dependencies
+      shell: pip3.6 install -r requirements.txt
+      args:
+        chdir: /app
+
+    - name: moving payment service file
+      copy:
+        src: payment.service
+        dest: /etc/systemd/system/payment.service
+
+    - name: daemon reload
+      shell: systemctl daemon-reload
+
+    - name: enabling payment service
+      service:
+        name: payment
+        state: started
+        enabled: true
+
+    - name: restarting service
+      service:
+        name: payment
+        state: restarted
+

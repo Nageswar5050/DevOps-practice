@@ -1,0 +1,26 @@
+- name: roboshop redis
+  hosts: redis
+  become: true
+  tasks:
+    - name: installing redis
+      shell: dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y && dnf module enable redis:remi-6.2 -y
+
+    - name: install
+      package:
+        name: redis
+        state: present
+
+    - name: replacing redis
+      replace:
+        path: /etc/redis.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+
+    - name: service start
+      service:
+        name: redis
+        state: started
+        enabled: true
+
+       
+

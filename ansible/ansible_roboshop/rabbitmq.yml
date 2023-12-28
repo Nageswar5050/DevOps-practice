@@ -1,0 +1,23 @@
+- name: roboshop rabbitmq
+  hosts: rabbitmq
+  become: true
+  tasks:
+    - name: creating rabbitmq repo
+      shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash && curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+
+    - name: install rabbit mq
+      package:
+        name: rabbitmq-server
+        state: present
+
+    - name: starting service
+      service:
+        name: rabbitmq-server
+        state: started
+        enabled: true
+
+    - name: adding roboshop user in rabbitmq
+      shell: rabbitmqctl add_user roboshop roboshop123 && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+
+
+

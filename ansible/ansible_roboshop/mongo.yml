@@ -1,0 +1,30 @@
+- name: roboshop mongo playbook
+  hosts: mongo
+  become: true
+  tasks:
+    - name: copying mongo repo
+      copy:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+
+    - name: installing mongo
+      package:
+        name: mongodb-org
+        state: present
+    
+    - name: staring mongod service
+      service:
+        name: mongod
+        state: started
+        enabled: yes
+
+    - name: allowing all in mongo service
+      replace:
+        path: /etc/mongod.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+
+    - name: restarting mongoservice
+      service:
+        name: mongod
+        state: restarted

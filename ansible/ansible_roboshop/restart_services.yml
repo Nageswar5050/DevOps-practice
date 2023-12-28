@@ -1,0 +1,20 @@
+- name: restarting services playbook
+  hosts: all
+  become: true
+  tasks:
+    - name: restarting
+      service:
+        name: "{{item}}"
+        state: restarted
+      loop:
+         - nginx
+         - mongo
+         - catalogue
+         - user
+         - cart
+         - redis
+         - rabbitmq-server
+         - shipping
+         - dispatch
+         - payment
+         - mysql

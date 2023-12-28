@@ -1,0 +1,36 @@
+- name: roboshop web
+  hosts: localhost
+  become: true
+  tasks:
+    - name: installing nginx
+      package:
+        name: nginx
+        state: present
+      
+    - name: removing old nginx files
+      file:
+        path: /usr/share/nginx/html
+        state: absent
+
+    - name: creating directory
+      file:
+        path: /usr/share/nginx/html
+        state: directory
+
+    - name: downloading and unarchiving
+      unarchive:
+        src: https://roboshop-builds.s3.amazonaws.com/web.zip
+        dest: /usr/share/nginx/html
+        remote_src: true
+
+    - name: copying reverse proxy file
+      copy:
+        src: roboshop.conf
+        dest: /etc/nginx/default.d/roboshop.conf
+
+    - name: starting service
+      service:
+        name: nginx
+        state: started
+        enabled: true
+

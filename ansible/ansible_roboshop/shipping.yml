@@ -1,0 +1,62 @@
+- name: roboshop shipping
+  hosts: shipping
+  become: true
+  tasks:
+    - name: installing maven
+      package:
+        name: maven
+        state: present
+
+    - name: adding user
+      user:
+        name: roboshop
+        state: present
+
+    - name: creating directory
+      file:
+       name: /app
+       state: directory
+
+    - name: downloading and unzipping shipping data
+      unarchive:
+        src: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+        dest: /app
+        remote_src: true
+
+    - name: running dependencies
+      shell: mvn clean package
+      args:
+        chdir: /app
+
+    - name: moving file
+      shell: mv target/shipping-1.0.jar shipping.jar
+      args:
+        chdir: /app
+
+    - name: moving shipping service file
+      copy:
+        src: shipping.service
+        dest: /etc/systemd/system/
+
+    - name: daemon reload
+      shell: systemctl daemon-reload
+
+    - name: enabling shipping service
+      service:
+        name: shipping
+        state: started
+        enabled: true
+
+    - name: installing MYSQL
+      package:
+        name: mysql
+        state: present
+
+    - name: loading schema
+      shell: mysql -h mysql.challa.cloud -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+
+    - name: restarting service
+      service:
+        name: shipping
+        state: restarted
+
