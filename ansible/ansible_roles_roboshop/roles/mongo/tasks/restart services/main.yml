@@ -1,0 +1,5 @@
+- name: Restarting services
+  service:
+    name: mongod
+    state: started
+    enabled: true
