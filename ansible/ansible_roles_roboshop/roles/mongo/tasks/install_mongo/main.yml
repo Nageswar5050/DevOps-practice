@@ -5,7 +5,7 @@
 
 - name: Install MongoDB
   package:
-    name: mongod
+    name: mongodb-org
     state: present
     update_cache: true
 
