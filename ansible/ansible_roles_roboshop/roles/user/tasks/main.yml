@@ -8,10 +8,10 @@
     name: common
     tasks_from: nodejs
 
-- name: copying cart service
+- name: copying user service
   copy:
-    src: cart.service
-    dest: /etc/systemd/system/cart.service
+    src: user.service
+    dest: /etc/systemd/system/user.service
 
 - name: starting service
   import_role:
