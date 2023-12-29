@@ -22,5 +22,5 @@
     name: mysqld
     state: restarted
 
-- name: mysql installation
+- name: mysql changing password
   shell: mysql_secure_installation --set-root-pass RoboShop@1
