@@ -1,0 +1,14 @@
+- name: copying "{{component}}" service
+  copy:
+    src: "{{component}}.service"
+    dest: /etc/systemd/system/cart.service
+
+- name: daemon-reload
+  systemd_service:
+    daemon_reload: true
+
+- name: starting service
+  service: 
+    name: "{{component}}"
+    state: started
+    enabled: true
