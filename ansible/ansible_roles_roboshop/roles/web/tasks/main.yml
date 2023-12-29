@@ -20,13 +20,19 @@
     dest: /usr/share/nginx/http/
     remote_src: true
 
+- name: starting services
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
 - name: copying reverse proxy file
   copy:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-- name: starting services
+- name: restarting services
   service:
     name: nginx
-    state: started
+    state: restarted
     enabled: true
