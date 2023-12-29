@@ -2,10 +2,10 @@
   package:
     name: "{{ item }}"
     state: present
-    loop:
-      - python36
-      - gcc
-      - python3-devel
+  loop:
+    - python36
+    - gcc
+    - python3-devel
 
 - name: app setup
   import_role:
