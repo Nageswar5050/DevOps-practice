@@ -9,6 +9,11 @@
     path: /usr/share/nginx/http
     state: absent
 
+- name: removing default content of NGINX
+  file:
+    path: /usr/share/nginx/http
+    state: directory
+
 - name: downloading new NGINX content
   unarchive:
     src: https://roboshop-builds.s3.amazonaws.com/web.zip
