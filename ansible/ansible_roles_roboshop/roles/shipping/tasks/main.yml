@@ -5,7 +5,7 @@
     update_cache: true
 
 - name: app-setup
-  import_module:
+  import_role:
     name: common
     tasks_from: app-setup
 
