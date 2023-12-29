@@ -24,7 +24,6 @@
   service:
     name: nginx
     state: started
-    enabled: true
 
 - name: copying reverse proxy file
   copy:
@@ -35,4 +34,3 @@
   service:
     name: nginx
     state: restarted
-    enabled: true
