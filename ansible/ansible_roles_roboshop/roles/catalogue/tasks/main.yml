@@ -10,6 +10,8 @@
 
 - name: dependencies installation
   command: npm install
+  args:
+    chdir: /app
 
 - name: copying catalogue.service file
   copy:
