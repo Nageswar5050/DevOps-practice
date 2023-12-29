@@ -1,5 +1,5 @@
 - name: nodejs setup
-  ansible.builtin.import_role:
+  ansible.builtin.import_roles:
     name: common
     tasks_from: nodejs.yml
 
