@@ -9,7 +9,7 @@
     tasks_from: app-setup
 
 - name: dependencies installation
-  command: npm install
+  shell: npm install
   args:
     chdir: /app
 
