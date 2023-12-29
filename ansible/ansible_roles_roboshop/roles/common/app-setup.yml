@@ -10,6 +10,6 @@
 
 - name: downloading and unzipping app data
   unarchive:
-    src: https://roboshop-builds.s3.amazonaws.com/"{{component}}.zip
+    src: "https://roboshop-builds.s3.amazonaws.com/{{component}}.zip"
     dest: /app
     remote_src: yes

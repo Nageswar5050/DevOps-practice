@@ -1,18 +1,14 @@
-- name: Disabling old nodejs
-  command: dnf module disable nodejs -y && dnf module enable nodejs:18 -y
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: app-setup
 
-- name: Installing nodejs
-  package:
-    name: nodejs
-    state: present
-    update_cache: true
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: nodejs
 
-- name: Installing dependencies
-  shell: npm Install
-  args:
-    chdir: /app
-
-- name: Copying catalogue.service file
-  copy:
-    src: catalogue.service
-    dest: /etc/systemd/system/catalogue.service
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: app-setup
