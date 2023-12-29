@@ -6,18 +6,18 @@
 
 - name: removing default content of NGINX
   file:
-    path: /usr/share/nginx/http
+    path: /usr/share/nginx/html
     state: absent
 
 - name: removing default content of NGINX
   file:
-    path: /usr/share/nginx/http
+    path: /usr/share/nginx/html
     state: directory
 
 - name: downloading new NGINX content
   unarchive:
     src: https://roboshop-builds.s3.amazonaws.com/web.zip
-    dest: /usr/share/nginx/http/
+    dest: /usr/share/nginx/html
     remote_src: true
 
 - name: copying reverse proxy file
