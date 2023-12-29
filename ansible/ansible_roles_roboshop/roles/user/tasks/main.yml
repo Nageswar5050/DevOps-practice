@@ -1,27 +1,22 @@
-- name: nodejs setup
-  import_role:
-    name: common
-    tasks_from: nodejs
-
 - name: app-setup
   import_role:
     name: common
     tasks_from: app-setup
+
+- name: nodejs setup
+  import_role:
+    name: common
+    tasks_from: nodejs
 
 - name: copying cart service
   copy:
     src: cart.service
     dest: /etc/systemd/system/cart.service
 
-- name: daemon-reload
-  systemd_service:
-    daemon_reload: true
-
 - name: starting service
-  service: 
-    name: cart
-    state: started
-    enabled: true
+  import_role:
+    name: common
+    tasks_from: service-start
 
 - name: downloading loading schema to mongodb
   import_role:
