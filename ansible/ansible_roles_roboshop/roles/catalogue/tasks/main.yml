@@ -8,11 +8,6 @@
     name: common
     tasks_from: nodejs
 
-- name: dependencies installation
-  shell: npm install
-  args:
-    chdir: /app
-
 - name: copying catalogue.service file
   copy:
     src: catalogue.service

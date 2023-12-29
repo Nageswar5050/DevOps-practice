@@ -6,3 +6,9 @@
     name: nodejs
     state: present
     update_cache: true
+
+- name: dependencies installation
+  shell: npm install
+  args:
+    chdir: /app
+
