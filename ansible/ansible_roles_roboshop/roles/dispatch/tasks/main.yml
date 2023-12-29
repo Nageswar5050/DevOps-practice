@@ -10,7 +10,7 @@
     tasks_from: app-setup
 
 - name: download dependencies
-  shell : go mod init dispatch && go get && go build
+  shell : go mod init dispatch ; go get ; go build
   
 - name: copying dispatch service
   copy:
