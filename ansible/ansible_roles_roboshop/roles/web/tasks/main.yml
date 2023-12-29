@@ -6,7 +6,7 @@
 
 - name: removing default content of NGINX
   file:
-    path: /usr/share/nginx/http/
+    path: /usr/share/nginx/http
     state: absent
 
 - name: downloading new NGINX content
