@@ -9,4 +9,4 @@
       state: present
 
 - name: loading schema to mongoDB
-  shell: mongo --host mongo.challa.cloud </app/schema/catalogue.js
+  shell: "mongo --host mongo.challa.cloud </app/schema/{{component}}.js"
