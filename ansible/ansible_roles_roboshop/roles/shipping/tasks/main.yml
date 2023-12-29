@@ -29,4 +29,17 @@
     name: common
     tasks_from: service-start
 
+- name: installing MYSQL
+  package:
+    name: mysql
+    state: present
+
+- name: loading schema
+  shell: mysql -h mysql.challa.cloud -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+
+- name: restarting service
+  service:
+    name: shipping
+    state: restarted
+
 
