@@ -18,7 +18,7 @@
 
 - name: installing and loading app schema to mongodb
   import_role:
-    name: commom
+    name: common
     tasks_from: mongo-setup
 
 - name: daemon reload
