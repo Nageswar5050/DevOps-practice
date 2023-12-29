@@ -8,17 +8,7 @@
     name: common
     tasks_from: nodejs
 
-- name: copying cart service
-  copy:
-    src: cart.service
-    dest: /etc/systemd/system/cart.service
-
-- name: daemon-reload
-  systemd_service:
-    daemon_reload: true
-
-- name: starting service
-  service: 
-    name: cart
-    state: started
-    enabled: true
+- name: service restart
+  import_role:
+    name: common
+    tasks_from: service-restart
