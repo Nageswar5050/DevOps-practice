@@ -30,5 +30,5 @@
 - name: starting service
   service:
     name: catalogue
-    state: present
+    state: started
     enabled: true
