@@ -1,12 +1,12 @@
-- name: nodejs setup
-  import_role:
-    name: common
-    tasks_from: nodejs.yml
-
 - name: app setup
-  import_role:
+  ansible.builtin.import_role:
     name: common
-    tasks_from: app-setup.yml
+    tasks_from: app-setup
+
+- name: node js
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
 
 - name: dependencies installation
   shell: npm install
