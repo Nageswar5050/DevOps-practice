@@ -11,7 +11,7 @@
 - name: copying cart service
   copy:
     src: cart.service
-    dest: /etc/systemd/stsrem/cart.service
+    dest: /etc/systemd/system/cart.service
 
 - name: daemon-reload
   systemd_service:
