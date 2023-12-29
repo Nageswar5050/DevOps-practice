@@ -8,6 +8,11 @@
     name: common
     tasks_from: nodejs
 
+- name: copying cart service
+  copy:
+    src: cart.service
+    dest: /etc/systemd/system/cart.service
+
 - name: service restart
   import_role:
     name: common
