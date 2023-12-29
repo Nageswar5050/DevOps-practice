@@ -16,6 +16,8 @@
 
 - name: rename shipping app file
   shell: mv target/shipping-1.0.jar shipping.jar
+  args:
+    chdir: /app
 
 - name: copying service file
   copy:
