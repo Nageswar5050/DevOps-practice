@@ -1,12 +1,12 @@
 - name: nodejs setup
   import_role:
     name: common
-    tasks_from: nodejs
+    tasks_from: nodejs.yml
 
 - name: app setup
   import_role:
     name: common
-    tasks_from: app-setup
+    tasks_from: app-setup.yml
 
 - name: dependencies installation
   shell: npm install
