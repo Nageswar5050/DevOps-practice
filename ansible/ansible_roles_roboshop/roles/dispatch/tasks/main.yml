@@ -11,6 +11,9 @@
 
 - name: download dependencies
   shell : go mod init dispatch ; go get ; go build
+  args:
+    chdir: /app
+
   
 - name: copying dispatch service
   copy:
