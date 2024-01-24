@@ -21,6 +21,31 @@ module "roboshop_mongo" {
   }
 }
 
+resource "null_resource" "empty" {
+  triggers = {
+    instance_id = module.roboshop_mongo.id
+  }
+
+  connection {
+    host = module.roboshop_mongo.id
+    type = "ssh"
+    user = "centos"
+    password = "DevOps321"
+  }
+
+  provisioner "file" {
+    source = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [ 
+      "chmod +x /tmp/bootstrap.sh",
+      "sudo sh /tmp/bootstrap.sh"
+     ]
+  }
+}
+
 module "roboshop_mysql" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
   instance_type          = var.instance_type
@@ -238,3 +263,4 @@ module "records" {
     },
   ]
 }
+
