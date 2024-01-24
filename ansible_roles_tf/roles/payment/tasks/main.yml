@@ -1,0 +1,28 @@
+- name: install python
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - python36
+    - gcc
+    - python3-devel
+
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: installing dependencies
+  shell: pip3.6 install -r requirements.txt
+  args:
+    chdir: /app
+
+- name: copy payment.service
+  copy:
+    src: payment.service
+    dest: /etc/systemd/system/payment.service
+
+- name: service-start
+  import_role:
+    name: common
+    tasks_from: service-start

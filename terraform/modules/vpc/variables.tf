@@ -4,7 +4,7 @@ variable "cidr_block" {
 }
 
 variable "common_tags" {
-  type = map(any)
+  type = map
 }
 
 variable "project_name" {
@@ -16,12 +16,12 @@ variable "environment" {
 }
 
 variable "vpc_tags" {
-  type    = map(any)
+  type    = map
   default = {}
 }
 
 variable "frontend_subnet_cidr" {
-  type = list(any)
+  type = list
   validation {
     condition     = length(var.frontend_subnet_cidr) == 2
     error_message = "Please enter only 2 subnets, because module only supports for 2 available availablility zones"
@@ -29,7 +29,7 @@ variable "frontend_subnet_cidr" {
 }
 
 variable "database_subnet_cidr" {
-  type = list(any)
+  type = list
   validation {
     condition     = length("${var.database_subnet_cidr}") == 2
     error_message = "Please enter only 2 subnets, because module only supports for 2 available availablility zones"
@@ -37,7 +37,7 @@ variable "database_subnet_cidr" {
 }
 
 variable "backend_subnet_cidr" {
-  type = list(any)
+  type = list
   validation {
     condition     = length("${var.backend_subnet_cidr}") == 2
     error_message = "Please enter only 2 subnets, because module only supports for 2 available availablility zones"
@@ -45,21 +45,21 @@ variable "backend_subnet_cidr" {
 }
 
 variable "subnet_tags" {
-  type    = map(any)
+  type    = map
   default = {}
 }
 
 variable "eip_tags" {
-  type    = map(any)
+  type    = map
   default = {}
 }
 
 variable "ngw_tags" {
-  type    = map(any)
+  type    = map
   default = {}
 }
 
 variable "rt_tags" {
-  type    = map(any)
+  type    = map
   default = {}
 }

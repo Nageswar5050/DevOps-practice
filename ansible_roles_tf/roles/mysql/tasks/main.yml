@@ -1,0 +1,26 @@
+- name: disbaling dnf module
+  shell: dnf module disable mysql -y
+
+- name: copying mysql repo
+  copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: installing mysql
+  package:
+    name: mysql-community-server
+    state: present
+
+- name: staring mysql service
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: restarting mysql service
+  service:
+    name: mysqld
+    state: restarted
+
+- name: mysql changing password
+  shell: mysql_secure_installation --set-root-pass RoboShop@1

@@ -1,0 +1,19 @@
+- name: app-setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: nodejs setup
+  import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: copying cart service
+  copy:
+    src: cart.service
+    dest: /etc/systemd/system/cart.service
+
+- name: service restart
+  import_role:
+    name: common
+    tasks_from: service-start

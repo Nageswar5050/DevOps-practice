@@ -1,0 +1,45 @@
+- name: install maven
+  package:
+    name: maven
+    state: present
+    update_cache: true
+
+- name: app-setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: installing dependencies
+  shell: mvn clean package
+  args:
+    chdir: /app
+
+- name: rename shipping app file
+  shell: mv target/shipping-1.0.jar shipping.jar
+  args:
+    chdir: /app
+
+- name: copying service file
+  copy:
+    src: shipping.service
+    dest: /etc/systemd/system/shipping.service
+
+- name: service restart
+  import_role:
+    name: common
+    tasks_from: service-start
+
+- name: installing MYSQL
+  package:
+    name: mysql
+    state: present
+
+- name: loading schema
+  shell: mysql -h mysql.challa.cloud -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+
+- name: restarting service
+  service:
+    name: shipping
+    state: restarted
+
+

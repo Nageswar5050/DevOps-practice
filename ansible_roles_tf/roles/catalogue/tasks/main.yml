@@ -1,0 +1,29 @@
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: node js
+  import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: copying catalogue.service file
+  copy:
+    src: catalogue.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: installing and loading app schema to mongodb
+  import_role:
+    name: common
+    tasks_from: mongo-setup
+
+- name: daemon reload
+  systemd_service:
+    daemon_reload: true
+
+- name: starting service
+  service:
+    name: catalogue
+    state: started
+    enabled: true

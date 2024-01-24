@@ -1,0 +1,24 @@
+- name: app-setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: nodejs setup
+  import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: copying user service
+  copy:
+    src: user.service
+    dest: /etc/systemd/system/user.service
+
+- name: starting service
+  import_role:
+    name: common
+    tasks_from: service-start
+
+- name: downloading loading schema to mongodb
+  import_role:
+    name: common
+    tasks_from: mongo-setup

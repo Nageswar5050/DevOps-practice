@@ -1,5 +1,5 @@
 variable "instance_names" {
-  type = list(any)
+  type = list
 }
 
 variable "sg_description" {
@@ -7,7 +7,7 @@ variable "sg_description" {
 }
 
 variable "common_tags" {
-  type = map(any)
+  type = map
 }
 
 variable "project_name" {
@@ -19,6 +19,6 @@ variable "environment" {
 }
 
 variable "sg_tags" {
-  type    = map(any)
+  type    = map
   default = {}
 }

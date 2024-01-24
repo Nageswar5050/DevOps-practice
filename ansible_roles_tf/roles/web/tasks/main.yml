@@ -1,0 +1,31 @@
+- name: Installing NGINX
+  package:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: removing default content of NGINX
+  file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: removing default content of NGINX
+  file:
+    path: /usr/share/nginx/html
+    state: directory
+
+- name: downloading new NGINX content
+  unarchive:
+    src: https://roboshop-builds.s3.amazonaws.com/web.zip
+    dest: /usr/share/nginx/html
+    remote_src: true
+
+- name: copying reverse proxy file
+  copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: starting services
+  service:
+    name: nginx
+    state: started

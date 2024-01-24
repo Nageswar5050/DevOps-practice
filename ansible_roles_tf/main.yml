@@ -1,0 +1,8 @@
+- name: "ROBOSHOP PLAYBOOK {{component}}"
+  hosts: localhost
+  connection : local
+  var_files:
+  - "variables-{{env}}.yml"
+  become: true
+  roles:
+   - "{{component}}"

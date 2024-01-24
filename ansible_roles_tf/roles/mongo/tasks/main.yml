@@ -1,0 +1,27 @@
+- name: copying mongo repo
+  copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install "{{component}}"
+  package:
+    name: mongodb-org
+    state: present
+    update_cache: true
+
+- name: starting services
+  service:
+    name: mongod
+    state: started
+    enabled: true
+
+- name: allowing all in mongo.conf
+  replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Restarting services
+  service:
+    name: mongod
+    state: restarted

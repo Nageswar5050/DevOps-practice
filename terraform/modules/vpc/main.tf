@@ -63,28 +63,28 @@ resource "aws_subnet" "main_backend_subnet" {
   )
 }
 
-# resource "aws_eip" "main_eip" {
-#   domain = "vpc"
-#   tags = merge(
-#     "${var.common_tags}",
-#     "${var.eip_tags}",
-#     {
-#         Name = "${var.project_name}-${var.environment}"
-#     }
-#   )
-# }
+resource "aws_eip" "main_eip" {
+  domain = "vpc"
+  tags = merge(
+    "${var.common_tags}",
+    "${var.eip_tags}",
+    {
+        Name = "${var.project_name}-${var.environment}"
+    }
+  )
+}
 
-# resource "aws_nat_gateway" "main_ngw" {
-#   allocation_id = aws_eip.main_eip.id
-#   subnet_id = aws_subnet.main_frontend_subnet[0].id
-#   tags = merge(
-#     "${var.common_tags}",
-#     "${var.ngw_tags}",
-#     {
-#         Name = "${var.project_name}-${var.environment}"
-#     }
-#   )
-# }
+resource "aws_nat_gateway" "main_ngw" {
+  allocation_id = aws_eip.main_eip.id
+  subnet_id = aws_subnet.main_frontend_subnet[0].id
+  tags = merge(
+    "${var.common_tags}",
+    "${var.ngw_tags}",
+    {
+        Name = "${var.project_name}-${var.environment}"
+    }
+  )
+}
 
 resource "aws_route_table" "main_frontend_subnet_rt" {
   vpc_id = aws_vpc.main_vpc.id
@@ -149,14 +149,14 @@ resource "aws_route" "main_frontend_subnet_route" {
 #   subnet_id = aws_subnet.main_frontend_subnet[0].id
 # }
 
-# resource "aws_route" "main_database_subnet_route" {
-#   route_table_id = aws_route_table.main_database_subnet_rt.id
-#   destination_cidr_block = "0.0.0.0/0"
-#   nat_gateway_id = aws_nat_gateway.main_ngw.id
-# }
+resource "aws_route" "main_database_subnet_route" {
+  route_table_id = aws_route_table.main_database_subnet_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = aws_nat_gateway.main_ngw.id
+}
 
-# resource "aws_route" "main_backend_subnet_route" {
-#   route_table_id = aws_route_table.main_backend_subnet_rt.id
-#   destination_cidr_block = "0.0.0.0/0"
-#   nat_gateway_id = aws_nat_gateway.main_ngw.id
-# }
+resource "aws_route" "main_backend_subnet_route" {
+  route_table_id = aws_route_table.main_backend_subnet_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = aws_nat_gateway.main_ngw.id
+}

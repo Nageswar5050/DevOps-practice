@@ -1,0 +1,26 @@
+- name: install golang
+  package:
+    name: golang
+    state: present
+    update_cache: true
+
+- name: app-setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: download dependencies
+  shell : go mod init dispatch ; go get ; go build
+  args:
+    chdir: /app
+
+  
+- name: copying dispatch service
+  copy:
+    src: dispatch.service
+    dest: /etc/systemd/system/dispatch.service
+
+- name: service-start
+  import_role:
+    name: common
+    tasks_from: service-start

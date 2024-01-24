@@ -185,9 +185,9 @@ resource "aws_security_group_rule" "rabbitmq-payment" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "catalogue-web" {
-  description              = "catalogue is accepting requests from web port 8080"
-  source_security_group_id = module.roboshop_sg.sg_id[10]
+resource "aws_security_group_rule" "catalogue-alb" {
+  description              = "catalogue is accepting requests from alb port 8080"
+  source_security_group_id = module.roboshop_sg.sg_id[12]
   security_group_id        = module.roboshop_sg.sg_id[4]
   type                     = "ingress"
   from_port                = 8080
@@ -205,9 +205,9 @@ resource "aws_security_group_rule" "catalogue-cart" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "user-web" {
-  description              = "user is accepting requests from web port 8080"
-  source_security_group_id = module.roboshop_sg.sg_id[10]
+resource "aws_security_group_rule" "user-alb" {
+  description              = "user is accepting requests from alb port 8080"
+  source_security_group_id = module.roboshop_sg.sg_id[12]
   security_group_id        = module.roboshop_sg.sg_id[5]
   type                     = "ingress"
   from_port                = 8080
@@ -225,9 +225,9 @@ resource "aws_security_group_rule" "user-payment" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "cart-web" {
-  description              = "cart is accepting requests from web port 8080"
-  source_security_group_id = module.roboshop_sg.sg_id[10]
+resource "aws_security_group_rule" "cart-alb" {
+  description              = "cart is accepting requests from alb port 8080"
+  source_security_group_id = module.roboshop_sg.sg_id[12]
   security_group_id        = module.roboshop_sg.sg_id[6]
   type                     = "ingress"
   from_port                = 8080
@@ -255,9 +255,9 @@ resource "aws_security_group_rule" "cart-payment" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "shipping-web" {
-  description              = "shipping is accepting requests from web port 8080"
-  source_security_group_id = module.roboshop_sg.sg_id[10]
+resource "aws_security_group_rule" "shipping-alb" {
+  description              = "shipping is accepting requests from alb port 8080"
+  source_security_group_id = module.roboshop_sg.sg_id[12]
   security_group_id        = module.roboshop_sg.sg_id[8]
   type                     = "ingress"
   from_port                = 8080
@@ -265,9 +265,9 @@ resource "aws_security_group_rule" "shipping-web" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "payment-web" {
-  description              = "payment is accepting requests from web port 8080"
-  source_security_group_id = module.roboshop_sg.sg_id[10]
+resource "aws_security_group_rule" "payment-alb" {
+  description              = "payment is accepting requests from alb port 8080"
+  source_security_group_id = module.roboshop_sg.sg_id[12]
   security_group_id        = module.roboshop_sg.sg_id[7]
   type                     = "ingress"
   from_port                = 8080
@@ -275,9 +275,9 @@ resource "aws_security_group_rule" "payment-web" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "web-internet" {
-  description       = "web is accepting requests from internet port 80"
-  security_group_id = module.roboshop_sg.sg_id[10]
+resource "aws_security_group_rule" "alb-internet" {
+  description       = "alb is accepting requests from internet port 80"
+  security_group_id = module.roboshop_sg.sg_id[12]
   type              = "ingress"
   from_port         = 0
   to_port           = 0
