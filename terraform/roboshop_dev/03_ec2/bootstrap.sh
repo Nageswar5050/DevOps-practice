@@ -1,6 +1,9 @@
 #!/bin/bash
 
-sudo yum install python3.11-devel python3.11-pip
-pip3.11 install ansible boto3 botocore
+component=$1
+environment=$2
 
-ansible pull 
+sudo yum install python3.11-devel pip3.11
+pip3.11 install boto3 botocore ansible
+
+ansible pull -U https://github.com/Nageswar5050/ansible_roles_tf.git -e component=$component -e env=$environment main.tf

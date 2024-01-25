@@ -21,16 +21,16 @@ module "roboshop_mongo" {
   }
 }
 
-resource "null_resource" "empty" {
+resource "null_resource" "mongo_null" {
   triggers = {
     instance_id = module.roboshop_mongo.id
   }
 
   connection {
-    host = module.roboshop_mongo.id
     type = "ssh"
     user = "centos"
     password = "DevOps321"
+    host = module.roboshop_mongo.id
   }
 
   provisioner "file" {
@@ -41,7 +41,7 @@ resource "null_resource" "empty" {
   provisioner "remote-exec" {
     inline = [ 
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh"
+      "sudo bootstrap.sh"
      ]
   }
 }
