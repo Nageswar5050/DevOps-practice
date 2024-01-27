@@ -39,7 +39,7 @@
     - name: Restart Nginx
       service:
         name: nginx
-        state: present
+        state: restarted
 
 
     
