@@ -8,7 +8,7 @@
       package:
         name: nginx
         state: present
-        enabled: true
+        #enabled: true
         update_cache: true
 
     - name: Enabling nginx
