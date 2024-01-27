@@ -19,12 +19,12 @@
     - name: Removing default nginx content
       file:
         path: /usr/share/nginx/html
-        state: directory
+        state: absent
 
     - name: creating html folder
       file:
         path: /usr/share/nginx/html
-        state: present
+        state: directory
 
     - name: Downloading and unarchiving Web data
       unarchive:
