@@ -19,7 +19,7 @@
     - name: Removing default nginx content
       file:
         path: /usr/share/nginx/html
-        state: absent
+        state: directory
 
     - name: creating html folder
       file:
