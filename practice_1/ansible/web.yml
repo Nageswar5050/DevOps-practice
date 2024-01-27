@@ -23,7 +23,7 @@
 
     - name: creating html folder
       file:
-        path: /usr/share/nginx/html/
+        path: /usr/share/nginx/html
         state: present
 
     - name: Downloading and unarchiving Web data
