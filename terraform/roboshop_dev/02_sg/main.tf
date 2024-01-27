@@ -16,14 +16,14 @@ resource "aws_security_group_rule" "vpn_rules_in" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "vpn_rules_out" {
-  security_group_id = module.roboshop_sg.sg_id[11]
-  type              = "egress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-}
+# resource "aws_security_group_rule" "vpn_rules_out" {
+#   security_group_id = module.roboshop_sg.sg_id[11]
+#   type              = "egress"
+#   from_port         = 0
+#   to_port           = 0
+#   protocol          = "-1"
+#   cidr_blocks       = ["0.0.0.0/0"]
+# }
 
 resource "aws_security_group_rule" "mongo-vpn" {
   description              = "mondodb is accepting requests from vpn port 22 (because from vpn only we should connect to all internal instances)"
@@ -275,12 +275,12 @@ resource "aws_security_group_rule" "payment-alb" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "alb-internet" {
+resource "aws_security_group_rule" "alb-vpn" {
   description       = "alb is accepting requests from internet port 80"
   security_group_id = module.roboshop_sg.sg_id[12]
   type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  source_security_group_id = module.roboshop_sg.sg_id[11]
 }

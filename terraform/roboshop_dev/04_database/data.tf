@@ -14,7 +14,7 @@ data "aws_ami" "ami_id" {
 }
 
 data "aws_ssm_parameter" "sg_id" {
-  name = "/${var.project_name}/${var.environment}/sg_id"
+  name = "/${var.project_name}/${var.environment}/sg_ids"
 }
 
 data "aws_ssm_parameter" "frontend_subnet_id" {
