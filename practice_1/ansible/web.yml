@@ -1,0 +1,45 @@
+- name: ROBOSHOP web playbook
+  hosts: localhost
+  become: true
+  vars_files:
+  - variables.tf
+  tasks:
+    - name: Installing nginx
+      package:
+        name: nginx
+        state: present
+        enabled: true
+        update_cache: true
+
+    - name: Enabling nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Removing default nginx content
+      file:
+        path: /usr/share/nginx/html/*
+        state: absent
+
+    - name: Downloading and unarchiving Web data
+      unarchive:
+        src: https://roboshop-builds.s3.amazonaws.com/web.zip
+        dest: /tmp/
+        remote_src: true
+
+    - name: Creating web conf file
+      copy:
+        src: roboshop.conf
+        dest: /etc/nginc/default.d/roboshop.conf
+        remote_src: true
+      notify:
+        - Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: present
+
+
+    
