@@ -18,13 +18,13 @@
 
     - name: Removing default nginx content
       file:
-        path: /usr/share/nginx/html/*
+        path: /usr/share/nginx/
         state: absent
 
     - name: Downloading and unarchiving Web data
       unarchive:
         src: https://roboshop-builds.s3.amazonaws.com/web.zip
-        dest: /tmp/
+        dest: /usr/share/nginx/html/
         remote_src: true
 
     - name: Creating web conf file
