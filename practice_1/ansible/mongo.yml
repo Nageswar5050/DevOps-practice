@@ -1,0 +1,31 @@
+- name: ROBOSHOP mongo
+  hosts: mongo.challa.cloud
+  become: true
+  tasks:
+    - name: Copying Mongorepo
+      file:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+        remote_src: true
+    
+    - name: installing mongo
+      package:
+        name: mongodb-org
+        state: present
+
+    - name: enabling mongod
+      service:
+        name: mongod
+        state: started
+        enabled: true
+
+    - name: allowing mongo to allowing
+      replace:
+        path: /etc/mongod.conf
+        regexp: "127.0.0.1"
+        replace: "0.0.0.0"
+
+    - name: restarting service
+      service:
+        name: mongod
+        state: restarted

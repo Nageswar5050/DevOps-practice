@@ -1,0 +1,58 @@
+- name: ROBOSHOP catalogue
+  hosts: catalogue.challa.cloud
+  become: true
+  tasks:
+    - name: Disabling nodejs
+      command: yum module disable nodejs -y && yum module enable nodejs:18 -y
+
+    - name: Installing nodejs
+      package:
+        name: nodejs
+        state: present
+
+    - name: adding user roboshop
+      user:
+        name: roboshop
+        state: present
+
+    - name: creating app directory
+      file:
+        name: /app
+        state: directory
+
+    - name: Downloading and unarchiving catalogue data
+      unarchive:
+        src: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+        dest: /app
+        remote_src: true
+
+    - name: installing npm
+      command: npm install
+
+    - name: copying catalogue service file
+      copy:
+        src: catalogue.service
+        dest: /etc/systemd/system/catalogue.service
+        remote_src: true
+
+    - name: reloading daemon
+      systemd_service:
+        name: mongod
+        daemon_reload: true
+
+    - name: starting service
+      service:
+        name: catalogue
+        state: started
+        enabled: true
+
+    - name: Copying Mongorepo
+      file:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+        remote_src: true
+    
+    - name: installing mongo
+      package:
+        name: mongodb-org-shell
+        state: present
