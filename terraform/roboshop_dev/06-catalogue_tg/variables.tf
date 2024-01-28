@@ -44,3 +44,8 @@ variable "tags" {
     Component = "catalogue"
   }
 }
+
+variable "domain_name" {
+  type    = string
+  default = "challa.cloud"
+}

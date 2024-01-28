@@ -37,6 +37,7 @@ variable "instance_names" {
     "web",       #10
     "vpn",       #11
     "alb",       #12
+    "web_alb"    #13
   ]
 }
 

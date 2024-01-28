@@ -19,7 +19,7 @@ resource "aws_lb" "roboshop_alb" {
   )
 }
 
-resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.roboshop_alb.arn
   port              = "80"
   protocol          = "HTTP"

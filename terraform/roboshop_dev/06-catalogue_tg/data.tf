@@ -32,3 +32,7 @@ data "aws_ssm_parameter" "database_subnet_id" {
 data "aws_ssm_parameter" "backend_subnet_id" {
   name = "/${var.project_name}/${var.environment}/backend_subnet_id"
 }
+
+data "aws_ssm_parameter" "aws_lb_listener_arn" {
+  name = "/${var.project_name}/${var.environment}/aws_lb_listener_arn"
+}
