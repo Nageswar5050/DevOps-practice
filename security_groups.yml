@@ -1,0 +1,47 @@
+---
+- name: summarizing security groups
+    - web
+        - vpn - 22
+        - web_alb -80
+    - catalogue
+        - vpn -22
+        - alb -8080
+        - cart -8080
+    - cart
+        - vpn -22
+        - alb -8080
+        - shipping -8080
+        - payment -8080
+    - user
+        - vpn -22
+        - alb -8080
+        - payment -8080
+    - shipping
+        - vpn -22
+        - alb -8080
+    - payment
+        - vpn -22
+        - alb -8080
+    - dispatch
+        - vpn -22
+        - alb -8080
+    - mongo
+        - vpn -22
+        - catalogue -27017
+        - user -27017
+    - mysql
+        - vpn -22
+        - shipping -3306
+    - redis
+        - vpn -22
+        - cart -6379
+        - user -6379
+    - rabbitmq
+        - vpn -22
+        - payment -5672
+    - vpn
+        - internet -all
+    - alb
+        - web -80
+    - web_alb
+        - internet -443
