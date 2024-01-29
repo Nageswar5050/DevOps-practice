@@ -16,7 +16,7 @@ resource "aws_security_group_rule" "vpn_rules_in" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "web_alb_internrt" {
+resource "aws_security_group_rule" "web_alb_internet" {
   security_group_id = module.roboshop_sg.sg_id[13]
   type              = "ingress"
   from_port         = 443
@@ -122,6 +122,16 @@ resource "aws_security_group_rule" "dispatch_vpn" {
   type                     = "ingress"
   from_port                = 22
   to_port                  = 22
+  protocol                 = "tcp"
+}
+
+resource "aws_security_group_rule" "dispatch_alb" {
+  description              = "dispatch is accepting requests from vpn port 22 (because from vpn only we should connect to all internal instances)"
+  source_security_group_id = module.roboshop_sg.sg_id[12]
+  security_group_id        = module.roboshop_sg.sg_id[9]
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
   protocol                 = "tcp"
 }
 
@@ -295,9 +305,9 @@ resource "aws_security_group_rule" "payment_alb" {
   protocol                 = "tcp"
 }
 
-resource "aws_security_group_rule" "alb_web_alb" {
+resource "aws_security_group_rule" "web-web_alb" {
   description       = "alb is accepting requests from web_alb"
-  security_group_id = module.roboshop_sg.sg_id[12]
+  security_group_id = module.roboshop_sg.sg_id[10]
   type              = "ingress"
   from_port         = 80
   to_port           = 80
@@ -313,14 +323,4 @@ resource "aws_security_group_rule" "alb_vpn" {
   to_port           = 80
   protocol          = "tcp"
   source_security_group_id = module.roboshop_sg.sg_id[11]
-}
-
-resource "aws_security_group_rule" "web_interner" {
-  description       = "alb is accepting requests from internet port 80"
-  security_group_id = module.roboshop_sg.sg_id[10]
-  type              = "ingress"
-  from_port         = 80
-  to_port           = 80
-  protocol          = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
 }
