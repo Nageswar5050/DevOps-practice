@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(name:"CHOICE", action:["apply", "destroy"], description:"Pick something")
+    }
+    
+    stages {
+        stage ("Installing terraform") {
+            steps {
+                sh """
+                    sudo yum update -y
+                    sudo yum install terraform -y
+                """
+            }
+        }
+
+        stage ("init") {
+            steps {
+                sh """
+                    cd terraform/roboshop_dev/01_vpc
+                    terraform init
+                """
+            }
+        }
+
+        stage ("plan") {
+            steps {
+                sh """
+                    cd terraform/roboshop_dev/01_vpc
+                    terraform plan
+                """
+            }
+        }
+        
+        stage ("Deploy") {
+            when {
+                condition {
+                    ${params.action} == "apply"
+                }
+            }
+            steps {
+                sh """
+                    terraform apply -auto-approve
+                """
+            }
+        }
+
+    }
+}
