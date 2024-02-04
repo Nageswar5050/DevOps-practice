@@ -2,7 +2,7 @@ output "main_vpc_id" {
   value = aws_vpc.main_vpc.id
 }
 
-output "main_igw" {
+output "main_igw_id" {
   value = aws_internet_gateway.main_igw.id
 }
 
