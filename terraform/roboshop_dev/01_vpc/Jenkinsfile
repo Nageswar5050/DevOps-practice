@@ -38,7 +38,7 @@ pipeline {
         
         stage ("Deploy") {
             when {
-                condition {
+                expression {
                     params.action == "apply"
                 }
             }
