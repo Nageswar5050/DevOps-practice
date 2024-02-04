@@ -4,6 +4,10 @@ pipeline {
             label "Agent_1"
         }
     }
+    options {
+        disableConcurrentBuilds()
+        ansiColor('xterm')
+    }
     parameters {
             choice(name: 'action', choices: ['apply', 'destroy'], description: 'Pick something')
         }
@@ -44,8 +48,15 @@ pipeline {
                     params.action == "apply"
                 }
             }
+
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
+
             steps {
                 sh """
+                    cd terraform/roboshop_dev/01_vpc
                     terraform apply -auto-approve
                 """
             }
