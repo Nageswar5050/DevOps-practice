@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label: "Agent_1"
+            label "Agent_1"
         }
     }
 
@@ -40,7 +40,7 @@ pipeline {
         stage ("Deploy") {
             when {
                 condition {
-                    "${params.action} == apply"
+                    params.action == "apply"
                 }
             }
             steps {
