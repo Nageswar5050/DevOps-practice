@@ -1,8 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label: "Agent_1"
+        }
+    }
 
     parameters {
-        choice(name:"CHOICE", action:["apply", "destroy"], description:"Pick something")
+        choice(name:"action", choices:["apply", "destroy"], description:"Pick something")
     }
     
     stages {
@@ -36,7 +40,7 @@ pipeline {
         stage ("Deploy") {
             when {
                 condition {
-                    ${params.action} == "apply"
+                    "${params.action} == apply"
                 }
             }
             steps {
