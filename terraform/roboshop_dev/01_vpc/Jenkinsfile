@@ -62,5 +62,25 @@ pipeline {
             }
         }
 
+        stage ("Destroy") {
+            when {
+                expression {
+                    params.action == "destroy"
+                }
+            }
+
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
+
+            steps {
+                sh """
+                    cd terraform/roboshop_dev/01_vpc
+                    terraform destroy -auto-approve
+                """
+            }
+        }
+
     }
 }
