@@ -4,8 +4,6 @@ pipeline {
     environment {
         packageVersion = ' '
     }
-
-    }
     stages {
         stage ("get version from catalogue code") {
             steps {
@@ -28,3 +26,4 @@ pipeline {
             }
         }
     }
+}
