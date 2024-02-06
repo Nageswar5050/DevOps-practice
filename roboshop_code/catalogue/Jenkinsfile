@@ -7,8 +7,8 @@ pipeline {
     stages {
         stage ("get version from catalogue code") {
             steps {
-                scripts {
-                    def packageJson = readJSON file : 'package.json'
+                script {
+                    def packageJson = readJSON file: 'package.json'
                     packageVersion = packageJson.version
 
                     echo "catalogue application version : $packageVersion"
