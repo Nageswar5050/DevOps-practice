@@ -18,8 +18,6 @@ pipeline {
         stage ("install dependencies") {
             steps {
                 sh """
-                    apt-get module disable nodejs -y
-                    apt-get module enable nodejs:18 -y
                     apt-get install nodejs -y
 
                     npm install
