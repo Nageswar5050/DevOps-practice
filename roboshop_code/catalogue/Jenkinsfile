@@ -23,7 +23,7 @@ pipeline {
 
                     sudo apt install npm
 
-                    ls -la
+                    ls -la /roboshop_code/catalogue/
                 """
             }
         }
