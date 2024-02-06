@@ -5,8 +5,6 @@ pipeline {
         packageVersion = ' '
     }
 
-    parameters {
-        password (name: "box_password", default_value: "ubuntu", description: "This is the dummy password")
     }
     stages {
         stage ("get version from catalogue code") {
