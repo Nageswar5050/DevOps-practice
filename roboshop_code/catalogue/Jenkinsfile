@@ -21,8 +21,6 @@ pipeline {
                     sudo apt-get update -y
                     sudo apt-get install nodejs -y
 
-                    sudo npm install
-
                     ls -la /var/lib/jenkins/workspace/ROBOSHOP/catalogue_app_pipeline/roboshop_code/catalogue/
                 """
             }
