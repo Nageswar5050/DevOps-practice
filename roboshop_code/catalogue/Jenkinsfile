@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     environment {
-        packageVersion = " "
+        packageVersion = ' '
     }
     stages {
         stage ("get version from catalogue code") {
             steps {
                 script {
-                    def packageJson = readJSON file: 'package.json'
+                    def packageJson = readJSON file: 'roboshop_code/catalogue/package.json'
                     packageVersion = packageJson.version
                     echo "catalogue application version : $packageVersion"
                 }
