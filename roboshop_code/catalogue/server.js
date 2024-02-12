@@ -150,7 +150,7 @@ if (process.env.DOCUMENTDB == 'true') {
 function mongoConnect() {
     return new Promise((resolve, reject) => {
     var mongoURL = process.env.MONGO_URL || 'mongodb://username:password@mongodb:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false';
-    var client = mongoClient.connect(mongoURL,
+    var client = mongoClient.connect(mongoURL, //This is the Dummy Password
       {
         // Mutable & Immutable
         //tlsCAFile: `/home/roboshop/catalogue/rds-combined-ca-bundle.pem` //Specify the DocDB; cert

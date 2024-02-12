@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "igw_id" {
-  value = module.roboshop_vpc.main_igw
+  value = module.roboshop_vpc.main_igw_id
 }
 
 output "az_list" {
@@ -20,4 +20,12 @@ output "backend_subnet_id" {
 
 output "database_subnet_id" {
   value = module.roboshop_vpc.main_database_subnet_id
+}
+
+output "database_route_table_id" {
+  value = module.roboshop_vpc.main_database_subnet_rt_id
+}
+
+output "backend_route_table_id" {
+  value = module.roboshop_vpc.main_backend_subnet_rt_id
 }

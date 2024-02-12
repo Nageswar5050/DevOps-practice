@@ -37,7 +37,7 @@ resource "null_resource" "catalogue_ami_null" {
     host = module.roboshop_catalogue.private_ip
     type = "ssh"
     user = "centos"
-    password = "DevOps321"
+    password = "DevOps321" #This is the Dummy Password
   }
 
   provisioner "file" {
@@ -74,7 +74,7 @@ resource "null_resource" "terminate_instance" {
     host = module.roboshop_catalogue.private_ip
     type = "ssh"
     user = "centos"
-    password = "DevOps321"
+    password = "DevOps321" #This is the Dummy Password
   }
 
   provisioner "local-exec" {

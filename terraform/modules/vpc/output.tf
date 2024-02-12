@@ -22,10 +22,18 @@ output "main_database_subnet_id" {
   value = local.database_subnet_id
 }
 
-output "main_ngw_id" {
-  value = aws_nat_gateway.main_ngw.id
+output "main_backend_subnet_rt_id" {
+  value = aws_route_table.main_backend_subnet_rt.id
 }
 
-output "main_eip_id" {
-  value = aws_eip.main_eip.id
+output "main_database_subnet_rt_id" {
+  value = aws_route_table.main_database_subnet_rt.id
 }
+
+# output "main_ngw_id" {
+#   value = aws_nat_gateway.main_ngw.id
+# }
+
+# output "main_eip_id" {
+#   value = aws_eip.main_eip.id
+# }

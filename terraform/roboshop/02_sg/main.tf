@@ -7,6 +7,15 @@ module "roboshop_sg" {
   common_tags    = var.common_tags
 }
 
+resource "aws_security_group_rule" "nat_instance_int" {
+  security_group_id = module.roboshop_sg.sg_id[12]
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
 resource "aws_security_group_rule" "vpn_rules_in" {
   security_group_id = module.roboshop_sg.sg_id[11]
   type              = "ingress"

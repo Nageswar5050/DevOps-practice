@@ -29,7 +29,7 @@ resource "null_resource" "mongo_null" {
   connection {
     type = "ssh"
     user = "centos"
-    password = "DevOps321"
+    password = "DevOps321" #This is the Dummy Password
     host = module.roboshop_mongo.private_ip
   }
 
@@ -66,7 +66,7 @@ resource "null_resource" "mysql_null" {
     host = module.roboshop_mysql.private_ip
     type = "ssh"
     user = "centos"
-    password = "DevOps321"
+    password = "DevOps321" #This is the Dummy Password
   }
 
   provisioner "file" {
@@ -102,7 +102,7 @@ resource "null_resource" "redis_null" {
     host = module.roboshop_redis.private_ip
     type = "ssh"
     user = "centos"
-    password = "DevOps321"
+    password = "DevOps321" #This is the Dummy Password
   }
 
   provisioner "file" {
@@ -138,7 +138,7 @@ resource "null_resource" "rabbitmq_null" {
     host = module.roboshop_rabbitmq.private_ip
     type = "ssh"
     user = "centos"
-    password = "DevOps321"
+    password = "DevOps321" #This is the Dummy Password
   }
 
   provisioner "file" {

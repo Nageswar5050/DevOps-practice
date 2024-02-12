@@ -11,7 +11,7 @@ export DNS=1
 export COMPRESSION_ENABLED=n
 export CUSTOMIZE_ENC=n
 export CLIENT=devops76s
-export PASS=1
+export PASS=1 #This is the Dummy Password
 curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 chmod +x openvpn-install.sh
 ./openvpn-install.sh
