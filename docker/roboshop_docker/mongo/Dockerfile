@@ -1,0 +1,3 @@
+FROM mongo:5
+#docker-entrypoint-initdb.d is userd for mostly for containers that are running databases like Mysql, postgresql, mongodb, these are used to initialize the database for default setting, normall these are used to initialize the database with default data or perform any necessary setup tasks, you can assume these are like user-data in ec2 instances.
+COPY *.js /docker-entrypoint-initdb.d/

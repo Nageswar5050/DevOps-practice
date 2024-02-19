@@ -13,11 +13,11 @@ module "roboshop_nat_inst" {
 resource "aws_route" "main_database_route_table_route" {
   route_table_id = data.aws_ssm_parameter.main_database_route_table_id.value
   destination_cidr_block = "0.0.0.0/0"
-  network_interface_id = module.roboshop_nat_inst.id
+  network_interface_id = module.roboshop_nat_inst.primary_network_interface_id
 }
 
 resource "aws_route" "main_backend_route_table_route" {
   route_table_id = data.aws_ssm_parameter.main_backend_route_table_id.value
   destination_cidr_block = "0.0.0.0/0"
-  network_interface_id = module.roboshop_nat_inst.id
+  network_interface_id = module.roboshop_nat_inst.primary_network_interface_id
 }

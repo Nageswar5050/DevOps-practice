@@ -1,0 +1,92 @@
+- openssh:
+    - known-hosts #it will store the fingerprint key in the known-hosts file.
+    - config file #better to create config file to avoid remembering ipaddress and username of remote hosts
+    - keys:
+        - public #this key will be used to store in user machines
+        - private #this key should not share to anyone, generally it will store in server machine
+    - sshd_config:
+        - PasswordLessAuthentication #if we set this to no, we cannot connect to the server using password and that too ssh, always use this option after configuring keys
+        - Port #we can change the ssh default port number using this option, while connecting we should use -p option
+        - ssh_config #like sshd_config file, this file is for global configuration, this file will be overwrite if we use config file which is in .ssh directory
+
+- DNS:
+    - stands for domain name system or domain name service
+    - it will organize by ICANN (Internet corporation for assigned names and numbers) which is not profitable organization
+    - dns working:
+        1. Browser cache (edge://net-internals)
+        2. OS cache
+        3. Router cache/ ISP cache
+        4. Root servers (we have total 13 root servers are available in our world starting from a.root-servers.net)
+        5. TLD server (top level domain servers .com, .net, .gov...etc)
+        6. Name servers
+
+- ansible:
+    - inventory/hosts
+    - ansible.cfg
+        - defaults
+        - privilege_escalations
+    - gather_facts
+    - variables:
+        - vars
+        - vars_files
+        - vars_prompt
+        - extra vars (using -e as adhoc commands)
+        - group vars (in inventory)
+        - magic variables:
+            - inventory_hostname
+            - play_hosts
+            - hostvars
+            - groups
+            - group_names
+    - modules:
+        - command (default)
+        - shell
+        - file
+        - copy
+        - fetch
+        - yum (for centos)
+        - apt (for Ubuntu)
+        - package (common)
+        - service
+        - systemd_service
+        - unarchive
+        - user
+        - line_in
+    - conditions:
+        - when
+    - loops
+    - playbook executions:
+        - fork (-f using command prompt)
+        - serial:
+            - numbers
+            - percenage
+        - throttle
+        - order
+        - run once
+    - vault
+    - roles
+    - handlers
+    - tags (-t using command prompt)
+    - error handling:
+        - ignore_errors
+        - block and rescue
+    - start/step
+    - dry run
+
+- docker:
+    - docker images
+    - Dockerfile:
+        - FROM #this hould be the first command in every Dockerfile, this instruction represents the container image.
+        - RUN #RUN instruction is used to run commands at image building time
+        - CMD #CMD instruction is used to run commands at container creation time and it is the default command in Dockerfile, CMD instruction can be overridden.
+        - LABELS #LABELS can be used as metadata in Dockerfile, these just like tags, and it can be used to filter Docker images using the command "docker images --filter LABELS=NAME=NAGESWAR"
+        - COPY #COPY instruction is used to copy files local to Docker container.
+        - ADD #ADD instruction is advanced from COPY, ADD can be used to copy filed from remote source to Docker file, meand we can use URL's or tar files as source
+        - ENTRYPOINT #ENTRYPOINT instruction is the executable and unlike CMD it can't override, CMD instruction can pass as arguments to ENTRYPOINT.
+        - USER #USER instruction is used to run next instruction commands should run as this user.
+        - WORKDIR #working directory
+        - ARG
+        - ONBUILD
+        - ENV #to set environment variables
+        - EXPOSE #EXPOSE instruction is used to define on which port this container is exposing
+        - VOLUME #
