@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "igw_id" {
-  value = module.roboshop_vpc.main_igw
+  value = module.roboshop_vpc.main_igw_id
 }
 
 output "az_list" {
