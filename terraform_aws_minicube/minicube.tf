@@ -3,10 +3,11 @@ module "minikube" {
 
   aws_region    = "us-east-1"
   cluster_name  = "roboshop"
-  aws_instance_type = "t2.micro"
+  aws_instance_type = "t3.medium"
   ssh_public_key = "~/.ssh/Ubuntu.pub"
-  aws_subnet_id = "subnet-0b61aa5fef733576b"
-  #ami_image_id = "ami-b81dbfc5"
+  aws_subnet_id = "subnet-0e00cd638353af26e" #replace your default subnet id
+  # by default centos7 will be used
+  ami_image_id = "ami-0aedf6b1cb669b4c7"
   hosted_zone = "challa.cloud"
   hosted_zone_private = false
 
