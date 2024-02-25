@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod_nginx
+  name: pod-nginx
   labels:
     app: nginx
     demo: service
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx_service
+  name: nginx-service
 spec:
   selector:
     app: nginx
