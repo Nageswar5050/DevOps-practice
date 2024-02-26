@@ -5,6 +5,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
 
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
@@ -63,3 +65,11 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+#install eksctl
+
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+
+sudo mv /tmp/eksctl /usr/local/bin
