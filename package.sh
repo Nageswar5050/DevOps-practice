@@ -27,7 +27,7 @@ then
             sudo apt install software-properties-common -y
             sudo add-apt-repository --yes --update ppa:ansible/ansible -y
             sudo apt install ansible -y;;
-        2) echo "Installing Docker"
+        2) ecacho "Installing Docker"
             sudo apt-get update -y
             sudo apt-get install ca-certificates curl -y
             sudo install -m 0755 -d /etc/apt/keyrings

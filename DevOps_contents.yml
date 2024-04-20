@@ -18,8 +18,22 @@
 
 
 - openssh:
-    - known-hosts #it will store the fingerprint key in the known-hosts file.
-    - config file #better to create config file to avoid remembering ipaddress and username of remote hosts
+    - OpenSSH is a Remote management tool, which is used to connect remote server.
+    - OpenSSH is a suite of utilities, important ones are server and client components.
+    - Bydefault openssh-client is installed in Ubuntu
+    - known-hosts: 
+        - If we connect to a server first time it will add the device fingerprint in ~/.ssh/known_hosts file.
+        - Generally everytime while you are connecting to a server, openssh checks known_hosts file first, because known_hosts file holds all the servers public keys and the servers IP address.
+        - By using this if any hacker assigns server IP to hacker PC, ssh warns us because there is no public key associated to the hacker pc in its known_hosts.
+    - ssh-client:
+        - By using config file we can create a template for connecting servers easily without mentioning server public key, username and IP address.
+        - config file template:
+            - Host ubuntu #we can mention the name whatever we want
+            - User ubuntu
+            - Hostname 54.90.110.83
+            - Port 22
+            - PreferredAuthentications publickey
+            - IdentityFile C:\Users\Nageswar-Acer\.ssh\Ubuntu
     - keys:
         - public #this key will be used to store in user machines
         - private #this key should not share to anyone, generally it will store in server machine
@@ -27,6 +41,9 @@
         - PasswordLessAuthentication #if we set this to no, we cannot connect to the server using password and that too ssh, always use this option after configuring keys
         - Port #we can change the ssh default port number using this option, while connecting we should use -p option
         - ssh_config #like sshd_config file, this file is for global configuration, this file will be overwrite if we use config file which is in .ssh directory
+        - PermitRootLogin # if we don't want to login as root using ssh we can make this as No
+        - ClientAliveInterval 120 # if we set this as 120 terminal always will run
+        - ClientAliveCountMax 10
 
 - DNS:
     - stands for domain name system or domain name service
@@ -109,3 +126,25 @@
         - ENV #to set environment variables
         - EXPOSE #EXPOSE instruction is used to define on which port this container is exposing
         - VOLUME #
+
+- jenkins:
+    - free style project:
+        - for creating project we will use GUI to add different stages and steps
+        - used for less complex and small projects
+        - no source control
+    - pipeline:
+        - writing declerative groovy script for creating project
+        - source code management
+    - post build:
+        - always  #this will run always
+        - failure  #only runs when a pipeline fails
+        - success  #runs only when the pipeline success
+    - Directives:
+        - environment:
+            - we can use environment function inside pipeline to crate environment variables and use in our pipeline later
+        - options:
+            - timeout #we can restrict our pipeline that should not run more than defined time timeout(time: 1, unit: 'HOURS')
+            - disableConcurrentBuilds #if we give this option it won't allow multiple builds at a time
+        - parameters: #By using parameters we can control our pipeline, after builing pipeline we will get one option called Build with parameters
+        - input: #while building pipeline it will ask us for permission
+        - when: #by using when condition we can control stages in pipeline
