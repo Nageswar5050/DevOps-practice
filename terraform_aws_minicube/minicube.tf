@@ -4,7 +4,7 @@ module "minikube" {
   aws_region    = "us-east-1"
   cluster_name  = "roboshop"
   aws_instance_type = "t3.medium"
-  ssh_public_key = "~/.ssh/Ubuntu.pub"
+  ssh_public_key = "~/.ssh/Lenovo.pub"
   aws_subnet_id = "subnet-0e00cd638353af26e" #replace your default subnet id
   # by default centos7 will be used
   ami_image_id = "ami-0aedf6b1cb669b4c7"

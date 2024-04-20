@@ -1,3 +1,22 @@
+- Linux
+    - vim:
+        - H is used to move the cursor to left
+        - L is used to move the cursor to right
+        - J is used to move the cursor down
+        - K is used to move the cursor up
+        - gg is used to move the cursor to the first line of the document
+        - /text is used to search the word from top to bottom in the document and n is for next forward search
+        - ?text is used to search the word from bottom to top in the document ans N is for next backward search
+        - set number is used to set the numbers to the lines
+        - set nonumber is used to unset the numbers to the lines
+    - file permissions:
+        - d stands for directory
+        - - stands for file
+        - l stands for link
+        - in linux we have 3 types of file permission levels u - user, g - group and o - others
+        - in linux we have 3 types of file permissions r(4) - read, w(2) - write and x(1) - execute
+
+
 - openssh:
     - known-hosts #it will store the fingerprint key in the known-hosts file.
     - config file #better to create config file to avoid remembering ipaddress and username of remote hosts
