@@ -1,0 +1,4 @@
+1. Install mongodb community edition
+2. change mongodb config file to allow all users to connect to mongodb
+3. start mongodb
+4. copy catalogue and user data to mongoserver and load it to mongodb

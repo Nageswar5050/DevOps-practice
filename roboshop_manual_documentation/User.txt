@@ -1,0 +1,17 @@
+1. Download nodejs
+2. create user
+3. create folder and copy user app data (server.js and package.json)
+4. install npm and run npm install command
+5. create service file with the following data
+	[Unit]
+	Description=User service
+	
+	[Service]
+	User=
+	Environment=MONGO_URL=mongo://xxxx:27017/catalogue
+	Environment=REDIS_HOST=
+	ExecStart=/bin/node server.js
+	
+	[Install]
+	WantedBy=multi-user.target
+6. Daemon-reload

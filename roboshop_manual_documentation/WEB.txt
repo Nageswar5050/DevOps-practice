@@ -1,0 +1,22 @@
+1. Installing Nginx
+2. rename existing Nginx file (for backup)
+3. create new Nginx file with the following info
+	events {
+	}
+	http {
+		include /etc/nginx/mime.types;
+		
+		server {
+			listen 80;
+			server_name XX.XX;
+			
+			root /web_srv/;
+			
+			add_header Cache-Control public;
+			add_header Pragma public;
+			expires 1M;
+			}
+		}
+4. create web_srv directory
+5. copy all webserver index files to web_srv directory
+6. restart nginx service

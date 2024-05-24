@@ -1,0 +1,2 @@
+1. Install redis
+2. change redis config file to allow all users to connect to mongodb

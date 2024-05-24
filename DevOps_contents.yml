@@ -15,16 +15,7 @@
         - l stands for link
         - in linux we have 3 types of file permission levels u - user, g - group and o - others
         - in linux we have 3 types of file permissions r(4) - read, w(2) - write and x(1) - execute
-        - umask is used to set the default permissions, generally by using umask we can tell linux to set same permissions for every file or directory if a user creates it.
-        - in umask for files default is 666 and for directory 777, after setting umask it will subtract umask value from 666 or 777 and then it assigns file permissions.
-        - for example if we set umask as 027 and we created a file, then linux subtracts 027 from 666, now the output is 640, that means linux assigns -rw-r----- permission to the file.
-        - we have 3 types of special permissions in linux 1)SUID 2)SGID 3)Stickybit
-        - SUID:
-            - By setting this, we can run any file using owner permissions. for example password change for user is only doable using root but for /usr/bin/passwd file there is SUID permission applied, so everyone can change password using admin permissions.
-        - SGID:
-            - this is mainly used for file sharing.
-        - Stickybit:
-            - By setting stickybit, it restricts file deletion only the owner and root of a file can delete.
+
 
 - openssh:
     - OpenSSH is a Remote management tool, which is used to connect remote server.
