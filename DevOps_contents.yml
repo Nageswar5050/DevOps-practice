@@ -15,6 +15,24 @@
         - l stands for link
         - in linux we have 3 types of file permission levels u - user, g - group and o - others
         - in linux we have 3 types of file permissions r(4) - read, w(2) - write and x(1) - execute
+    - Archiving:
+        - tar:
+            - tar command is used to combine multiple files in to a single file but this will not compress files like zip.
+            - tar -cf etc_backup.tar etc #here -c is for creating tar file, and f is for files.
+            - -tf is used to view the tar file contents
+            - -tvf is used to view the files with full details including permissions, ownership and modified date.
+            - -xf is used to extract the tar file to normal file
+        - gzip:
+            - gzip is used to compress files.
+            - gunzip is used to uncompress files.
+        - We can combine both tar and gzip to archive and compress using single command
+        - tar -cvzf <file name to create> <file name> #here z is for zippng.
+    - file manipulation:
+        - awk:
+            - awk command is used to print only required fields in text files.
+            - awk '{command}' <file name> is the command to use awk.
+            - awk {'print $1'} /etc/passwd, this command will print single field. generally the delimiter for awk is 'space', if there is no space in the line, the entire line will be considered as a single field.
+            - we can change the field seperator by using -F option awk -F ':' '{print $1, $5}' etc/passwd 
 
 
 - openssh:
