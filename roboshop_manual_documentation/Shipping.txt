@@ -1,0 +1,18 @@
+1. Install Java
+2. Set Java_Home Variable
+3. create directory and copy shipping code
+4. install maven
+5. run mvn clean install (it will run using pom.xml)
+6. create user
+7. create shipping service
+    [Unit]
+    Description=Shipping service
+
+    [Service]
+    User=
+    Environment=CART_URL=
+    ExecStart=/bin/java -jar /app/shipping.jar
+    SyslogIdentifier=shipping
+
+    [Install]
+    WantedBy=multi-user.target

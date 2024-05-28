@@ -9,8 +9,9 @@
 	[Service]
 	User=
 	Environment=REDIS_HOST=
-	Environment=REDIS_HOST=
-	ExecStart=/bin/node server.js
+	Environment=CATALOGUE_HOST=
+	ExecStart=/bin/node /app/server.js
+	SyslogIdentifier=cart
 	
 	[Install]
 	WantedBy=multi-user.target
